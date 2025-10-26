@@ -3,6 +3,8 @@ package com.proyecto.diente.entidades;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "detalle_dental")
 public class DetalleDental {
@@ -28,6 +30,7 @@ public class DetalleDental {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "diente_id")
+    @JsonBackReference
     private Diente diente;
 
 	public DetalleDental(int turnoId, String diagnostico, String tratamiento, String observaciones,

@@ -7,8 +7,8 @@ import com.proyecto.diente.entidades.Diente;
 import com.proyecto.diente.repository.DienteRepository;
 
 public interface DienteService {
-    List<Diente> listarPorPaciente(Long pacienteId);
+    List<Diente> listarPorPaciente(String dniPaciente);
     Diente guardar(Diente diente);
     Diente obtenerPorId(Long id);
-    List<Diente> crearDientesBaseParaPaciente(Long pacienteId);
+    List<Diente> crearDientesBaseParaPaciente(String dniPaciente);
 }

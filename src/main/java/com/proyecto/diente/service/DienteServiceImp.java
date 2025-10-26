@@ -49,7 +49,7 @@ public class DienteServiceImp implements DienteService {
     };
 
     @Override
-    public List<Diente> crearDientesBaseParaPaciente(Long pacienteId) {
+    public List<Diente> crearDientesBaseParaPaciente(String dniPaciente) {
         List<Diente> dientes = new ArrayList<>();
 
         for (String[] d : DIENTES_BASE) {
@@ -57,17 +57,17 @@ public class DienteServiceImp implements DienteService {
             diente.setNumero(d[0]);
             diente.setNombre(d[1]);
             diente.setCuadrante(d[2]);
-            diente.setPacienteId(pacienteId);
+            diente.setDniPaciente(dniPaciente);
             dientes.add(diente);
         }
 
         return repo.saveAll(dientes);
     }
 
-    @Override
-    public List<Diente> listarPorPaciente(Long pacienteId) {
-        return repo.findByPacienteId(pacienteId);
+    public List<Diente> listarPorPaciente(String dniPaciente) {
+        return repo.findByDniPacienteConDetalles(dniPaciente);
     }
+
 
     @Override
     public Diente guardar(Diente diente) {

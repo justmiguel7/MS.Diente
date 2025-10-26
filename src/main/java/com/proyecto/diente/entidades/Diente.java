@@ -1,7 +1,11 @@
 package com.proyecto.diente.entidades;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "diente")
@@ -20,24 +24,25 @@ public class Diente {
 	@Column(name = "cuadrante")
     private String cuadrante;
 
-    @Column(name = "paciente_id")
-    private Long pacienteId;
+	@Column(name = "dnipaciente")
+	private String dniPaciente;
     
     
     
     
 
-    public Diente(String numero, String nombre, String cuadrante, Long pacienteId, List<DetalleDental> detalles) {
+    public Diente(String numero, String nombre, String cuadrante, String dniPaciente, List<DetalleDental> detalles) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
 		this.cuadrante = cuadrante;
-		this.pacienteId = pacienteId;
+		this.dniPaciente = dniPaciente;
 		this.detalles = detalles;
 	}
 
-	@OneToMany(mappedBy = "diente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DetalleDental> detalles;
+    @OneToMany(mappedBy = "diente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<DetalleDental> detalles = new ArrayList<>();
 	
 	public Diente() {
 		
@@ -56,8 +61,8 @@ public class Diente {
     public String getCuadrante() { return cuadrante; }
     public void setCuadrante(String cuadrante) { this.cuadrante = cuadrante; }
 
-    public Long getPacienteId() { return pacienteId; }
-    public void setPacienteId(Long pacienteId) { this.pacienteId = pacienteId; }
+    public String getDniPaciente() { return dniPaciente; }
+    public void setDniPaciente(String dniPaciente) { this.dniPaciente = dniPaciente; }
 
     public List<DetalleDental> getDetalles() { return detalles; }
     public void setDetalles(List<DetalleDental> detalles) { this.detalles = detalles; }
