@@ -14,7 +14,7 @@ public class DienteController {
     @Autowired
     private DienteService service;
 
-    // ✅ Ahora busca por DNI del paciente (no por ID numérico)
+    //  busca por DNI del paciente 
     @GetMapping("/paciente/{dniPaciente}")
     public List<Diente> listarPorPaciente(@PathVariable String dniPaciente) {
         return service.listarPorPaciente(dniPaciente);

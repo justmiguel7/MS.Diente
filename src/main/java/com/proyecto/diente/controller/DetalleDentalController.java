@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.proyecto.diente.entidades.DetalleDental;
 import com.proyecto.diente.service.DetalleDentalService;
+import com.proyecto.diente.dto.DetalleDentalDTO;
 
 @RestController
 @RequestMapping("/api/detalles")
@@ -20,7 +21,7 @@ public class DetalleDentalController {
     }
 
     @PostMapping
-    public DetalleDental guardar(@RequestBody DetalleDental detalle) {
-        return service.guardar(detalle);
+    public DetalleDental guardar(@RequestBody DetalleDentalDTO dto) {
+        return service.guardar(dto);
     }
 }
